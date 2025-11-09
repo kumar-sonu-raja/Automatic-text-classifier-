@@ -1,0 +1,45 @@
+# text_classifier_demo.py
+# 🧠 Automatic Text Classifier
+# Author: Veerudra Chaurasiya
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Sample training data
+training_sentences = [
+    "I love this product",
+    "This is amazing",
+    "I am very happy",
+    "What a fantastic experience",
+    "I hate this",
+    "This is terrible",
+    "I am not happy",
+    "Worst product ever"
+]
+
+# Labels for the training data
+# 1 = Positive, 0 = Negative
+training_labels = [1, 1, 1, 1, 0, 0, 0, 0]
+
+# Step 1: Convert text into numeric form (TF-IDF)
+vectorizer = TfidfVectorizer()
+X_train = vectorizer.fit_transform(training_sentences)
+
+# Step 2: Train the Naive Bayes Classifier
+model = MultinomialNB()
+model.fit(X_train, training_labels)
+
+# Step 3: Take user input
+print("🧠 Automatic Text Classifier")
+print("---------------------------------")
+user_input = input("Enter a sentence to classify: ")
+
+# Step 4: Transform and predict
+X_test = vectorizer.transform([user_input])
+prediction = model.predict(X_test)[0]
+
+# Step 5: Display result
+if prediction == 1:
+    print("Prediction: Positive 😊")
+else:
+    print("Prediction: Negative 😞")
