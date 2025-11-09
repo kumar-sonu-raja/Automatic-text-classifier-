@@ -1,6 +1,6 @@
 # text_classifier_demo.py
 # 🧠 Automatic Text Classifier
-# Author: Veerudra Chaurasiya
+# Author: Kumar Sonu Raja 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
